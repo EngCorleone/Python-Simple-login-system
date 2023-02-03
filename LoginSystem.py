@@ -1,13 +1,22 @@
-print("="*40)
-print(" "*10 + "Hello To The Website" + " "*10)
-haveAnAcc = input("Hello, Do you have an account? (Y,N) ")
-YesAnswer = ["Yes", "Y"]
-NoAnswer = ["No", "N"]
+# DataBase (Dictionary)
 UserNames = {"Admin": "Admin",
 "m17z": "m17z123"
 }
+
+###########################################
+
+print("="*40)
+print(" "*10 + "Hello To The Website" + " "*10)
+print("="*40)
+haveAnAcc = input("Hello, Do you have an account? (Y,N) ") #Ask the visitor if he had an acc in the database.
+YesAnswer = ["Yes", "Y"]
+NoAnswer = ["No", "N"]
+
 tries = 3
-    
+
+if haveAnAcc not in YesAnswer or NoAnswer:
+    print("Please Choose Yes or No.")
+
 while haveAnAcc.strip().capitalize() in YesAnswer:
     username = input("Okay, please type your username: ")
     password = input("Now your password: ")
@@ -30,18 +39,18 @@ while haveAnAcc.strip().capitalize() in NoAnswer:
     if signup in YesAnswer:
         NewUser = input("Type the username you want to use: ")
         NewUser = NewUser.strip()
-        NewEmail = input("Your Email: ")
-        NewEmail = NewEmail.strip()
-        NewPass = input("the password: ")
-        confirmPass = input("Confirm the password: ")
-        NewPass = NewPass.strip()
-        confirmPass = confirmPass.strip()
         if NewUser in UserNames:
             print("The username have been used, Try Again ...")
+            continue
         elif NewUser not in UserNames:
+            NewEmail = input("Your Email: ")
+            NewEmail = NewEmail.strip()
+            NewPass = input("the password: ")
+            confirmPass = input("Confirm the password: ")
+            NewPass = NewPass.strip()
+            confirmPass = confirmPass.strip()
             if NewPass == confirmPass:
-                print(
-                    f"Now you have an account has a username {NewUser}, Please Reopen the file to sign-in.")
+                print(f"Now you have an account has a username {NewUser}, Please Reopen the file to sign-in.")
                 UserNames.setdefault(f"{NewUser}", f"{NewPass}")
                 break
             else:
@@ -53,5 +62,3 @@ while haveAnAcc.strip().capitalize() in NoAnswer:
     else:
         print("SOMTHING WRONG WITH YOUR ANSWER")
         continue
-if haveAnAcc not in YesAnswer or NoAnswer:
-    print("Please Choose Yes or No.")
